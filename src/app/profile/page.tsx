@@ -63,13 +63,13 @@ function ProfilePage() {
 
     return (
         <div className={styles.profilePage}>
-            <h1 className={styles.title}>My Profile</h1>
+            <h1 className={styles.title}>User Profile</h1>
             <div className={styles.profileCard}>
                 <Image
                     width={150}
-                    height={150}
+                    height={120}
                     className={styles.profileImage}
-                    src="/profile-pic.png"
+                    src="/myprofilepic.png"
                     alt="Profile Picture"
                 />
                 <div className={styles.profileDetails}>
@@ -97,6 +97,17 @@ function ProfilePage() {
                                     />
                                 </div>
                                 <div className={styles.formInputContainer}>
+                                    <label htmlFor="text">Username</label>
+                                    <input
+                                        className={styles.formInput}
+                                        type="text"
+                                        name="username"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        placeholder="Username"
+                                    />
+                                </div>
+                                <div className={styles.formInputContainer}>
                                     <label htmlFor="email">Email</label>
                                     <input
                                         className={styles.formInput}
@@ -108,7 +119,43 @@ function ProfilePage() {
                                     />
                                 </div>
                             </div>
-                            <div className={styles.buttons}>
+
+                            <div className={styles.formInputContainer}>
+                                    <label htmlFor="text">Adress</label>
+                                    <input
+                                        className={styles.formInput}
+                                        type="text"
+                                        name="adress"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        placeholder="Address"
+                                    />
+                                </div>
+                                <div className={styles.formInputContainer}>
+                                    <label htmlFor="text">Telephone number</label>
+                                    <input
+                                        className={styles.formInput}
+                                        type="text"
+                                        name="telephone number"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        placeholder="Telephone number"
+                                        
+                                    />
+                                    
+                                <div className={styles.buttons}>
+                                <button className={styles.primaryButton} type="submit">Upload Photo</button>
+                                <button
+                                    className={styles.secondaryButton}
+                                    type="button"
+                                    onClick={() => setIsEditing(false)}
+                                >
+                                   Delete
+                                </button>
+
+                            </div>
+                                </div>
+                                <div className={styles.buttons}>
                                 <button className={styles.primaryButton} type="submit">Save</button>
                                 <button
                                     className={styles.secondaryButton}
@@ -117,9 +164,10 @@ function ProfilePage() {
                                 >
                                     Cancel
                                 </button>
-                            </div>
+                                </div>
                         </form>
                     )}
+                    
                 </div>
             </div>
         </div>

@@ -2,15 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     padding: 20px;
     width: 100%;
-
+    height: 100vh;
 }
 
 .title {
-    font-size: 2rem;
-    color: #333;
+    font-size: 25px;
+    color: #007bff;
     margin-bottom: 20px;
+}
+
+.description {
+    font-size: 15px;
+    color: green;
+    margin-bottom: 10px;
 }
 
 .profileCard {
@@ -29,6 +36,7 @@
     border-radius: 50%;
     margin-right: 20px;
     object-fit: cover;
+
 }
 
 .profileDetails {
@@ -126,34 +134,3 @@
     gap: 12px;
 }
 
-.primaryButton {
-    background-color: #007bff;
-    border: 1px solid #007bff;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.secondaryButton {
-    background-color: #ffffff;
-    border: 1px solid #007bff;
-    color: #007bff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.primaryButton:hover {
-    border-color: #0056b3;
-    background-color: #0056b3;
-}
-
-.secondaryButton:hover {
-    border-color: #d9d9d9;
-    background-color: #d9d9d9;
-}
