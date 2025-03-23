@@ -1,0 +1,33 @@
+.sidebar {
+  width: 200px; /* Fixed width for the sidebar */
+  height: 100vh; /* Full height of the viewport */
+  background-color: #FFFFFF;
+  color: white;
+  padding-top: 20px;
+  position: fixed; /* Fixed position to stay on the left */
+  top: 0;
+  left: 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 20px 0;
+}
+
+.sidebar a {
+  color: #384D6C;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+  padding: 10px 20px;
+}
+
+.sidebar a:hover {
+  background-color: #EDF6FF;
+}
