@@ -9,15 +9,15 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
-  margin-bottom: 44px;
+  margin-bottom: 22px;
 }
 .title {
-  color: #384D6C;
+  color: #384d6c;
   font-weight: 700;
   font-size: 24px;
   line-height: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #D0D0D0;
+  border-bottom: 1px solid #d0d0d0;
   width: fit-content;
 }
 .inner-container {
@@ -32,7 +32,7 @@
   gap: 16px;
 }
 .profile-picture {
-  border: 5px solid #FFFFFF;
+  border: 5px solid #ffffff;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -44,17 +44,17 @@
 .name {
   font-size: 20px;
   font-weight: 700;
-  color: #384D6C;
+  color: #384d6c;
 }
 .position {
   font-size: 20px;
   font-weight: 400;
-  color: #384D6C;
+  color: #384d6c;
 }
 .location {
   font-size: 16px;
   font-weight: 400;
-  color: #6B7280;
+  color: #6b7280;
 }
 .buttons {
   display: flex;
@@ -62,9 +62,9 @@
 }
 .button-primary {
   padding: 16px 20px;
-  background: #384D6C;
+  background: #384d6c;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
   border: none;
@@ -74,12 +74,12 @@
 }
 .button-secondary {
   padding: 16px 20px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
-  color: #384D6C;
+  color: #384d6c;
   font-size: 14px;
   font-weight: 700;
-  border: 2px solid #384D6C;
+  border: 2px solid #384d6c;
   outline: none;
   width: 176px;
   height: 56px;
@@ -90,7 +90,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  border-top: 1px solid #D0D0D0;
+  border-top: 1px solid #d0d0d0;
 }
 .form-inner-wrapper {
   display: flex;
