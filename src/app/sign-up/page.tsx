@@ -35,8 +35,14 @@ const SignUp: React.FC = () => {
             await setDoc(userDoc, {
                 uid,
                 email,
-                displayName: "",
                 createdAt: serverTimestamp(),
+                firstName: "",
+                lastName: "",
+                username: "",
+                position: "",
+                phone: "",
+                location: "",
+                timezone: "",
             });
         } catch (error) {
             console.error("Error adding user to Firestore: ", error);
@@ -63,37 +69,40 @@ const SignUp: React.FC = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <h2 className={styles.title}>Sign Up</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <div className={styles.inputGroup}>
-                    <label htmlFor="email" className={styles.label}>Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        className={styles.input}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className={styles.inputGroup}>
-                    <label htmlFor="password" className={styles.label}>Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        className={styles.input}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit" className={styles.button}>Sign Up</button>
-                <p className={styles.linkContainer}>
-                    Have an account? <Link href='/login' className={styles.link}>Log in</Link>
-                </p>
-            </form>
+        <div className={styles['page-wrapper']}>
+            <div className={styles.container}>
+                <h2 className={styles.title}>Sign Up</h2>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="email" className={styles.label}>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            className={styles.input}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="password" className={styles.label}>Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className={styles.input}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className={styles.button}>Sign Up</button>
+                    <p className={styles.linkContainer}>
+                        Have an account? <Link href='/login' className={styles.link}>Log in</Link>
+                    </p>
+                </form>
+            </div>
         </div>
+     
     );
 };
 

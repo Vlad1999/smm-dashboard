@@ -1,0 +1,26 @@
+.button {
+  padding: 16px 20px;
+  border-radius: 8px;
+  outline: none;
+  width: 176px;
+  height: 56px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.button:hover {
+  opacity: 0.8;
+}
+.button:active {
+  opacity: 1;
+}
+.primary {
+  background: #384D6C;
+  color: #FFFFFF;
+  border: none;
+}
+.secondary {
+  background: #FFFFFF;
+  color: #384D6C;
+  border: 2px solid #384D6C;
+}

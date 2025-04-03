@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.user-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-bottom: 44px;
+}
+.title {
+  color: #384D6C;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #D0D0D0;
+  width: fit-content;
+}
+.inner-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.profile-picture {
+  border: 5px solid #FFFFFF;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #384D6C;
+}
+.position {
+  font-size: 20px;
+  font-weight: 400;
+  color: #384D6C;
+}
+.location {
+  font-size: 16px;
+  font-weight: 400;
+  color: #6B7280;
+}
+.buttons {
+  display: flex;
+  gap: 44px;
+}
+.button-primary {
+  padding: 16px 20px;
+  background: #384D6C;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  width: 176px;
+  height: 56px;
+}
+.button-secondary {
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  color: #384D6C;
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid #384D6C;
+  outline: none;
+  width: 176px;
+  height: 56px;
+}
+.form-container {
+  padding: 32px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid #D0D0D0;
+}
+.form-inner-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+  width: 100%;
+}
