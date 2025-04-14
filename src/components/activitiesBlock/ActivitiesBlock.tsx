@@ -1,6 +1,7 @@
 'use client';
 
 import React, { ReactNode, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Tabs from '@/components/tabs/Tabs';
 import ActivitiesList from '@/components/activitiesBlock/ActivitiesList';
 import SelectInput from '@/components/selectInput/SelectInput';
@@ -36,7 +37,6 @@ interface IProps {
 
 const ActivitiesBlock: React.FC<IProps> = ({ activities }) => {
   const [selectedNetwork, setSelectedNetwork] = useState<SocialNetwork | 'Show all'>('Show all');
-
   const [allActivities, setAllActivities] = useState<IAllActivities[]>([
     { key: 'message', label: 'Inbox', content: null },
     {
@@ -46,6 +46,8 @@ const ActivitiesBlock: React.FC<IProps> = ({ activities }) => {
     },
     { key: 'comment', label: 'Comments', content: null },
   ]);
+
+  const t = useTranslations('Dashboard');
 
   useEffect(() => {
     if (activities) {
@@ -69,7 +71,7 @@ const ActivitiesBlock: React.FC<IProps> = ({ activities }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>All Activities</h3>
+        <h3 className={styles.title}>{t('all-activities')}</h3>
         <SelectInput
           options={Object.values({ All: 'Show all', ...SocialNetwork })}
           placeholder="Select a platform"

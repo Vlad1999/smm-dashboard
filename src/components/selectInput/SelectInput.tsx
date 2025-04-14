@@ -38,7 +38,7 @@ const SelectInput: React.FC<SelectProps> = ({ value, onChange, label, placeholde
           alt="Right icon"
           className={isOpen ? `${styles['icon-right']} ${styles.open}` : styles['icon-right']}
           height={24}
-          src="icons/arrow.svg"
+          src="/icons/arrow.svg"
           width={24}
         />
         {isOpen && (

@@ -1,14 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState, useTransition } from 'react';
+import { usePathname, useRouter } from '@/i18n/navigation';
 import { signOut } from '@firebase/auth';
 import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 import Avatar from 'react-avatar';
 import { doc, getDoc } from '@firebase/firestore';
-import { auth, db } from '@/firebase/config';
-import useClickOutside from '@/hooks/useClickOutside';
-import styles from './Navbar.module.css';
+import { useLocale } from 'use-intl';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useParams } from 'next/navigation';
+import SelectInput from '@/components/selectInput/SelectInput';
+import useClickOutside from '@/hooks/useClickOutside';
+import { auth, db } from '@/firebase/config';
+import styles from './Navbar.module.css';
 
 interface NavbarProps {
   user: any;
@@ -22,6 +25,8 @@ const Navbar = ({ user }: NavbarProps) => {
   const [lastName, setLastName] = useState<string>('');
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const locale = useLocale();
 
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -58,11 +63,20 @@ const Navbar = ({ user }: NavbarProps) => {
     })();
   }, [user]);
 
+  const handleLocaleChange = (nextLocale: string) => {
+    router.replace({ pathname }, { locale: nextLocale });
+  };
+
   return (
     <header className={styles.navbar}>
-      <div className={styles['navbar-left']}>
-        <p>{pathname.replace('/', '')}</p>
-      </div>
+      {/*<div className={styles['navbar-left']}>*/}
+      {/*  <p>{pathname.replace('/', '')}</p>*/}
+      {/*</div>*/}
+      <SelectInput
+        options={['en', 'hy']}
+        value={locale}
+        onChange={(value) => handleLocaleChange(value)}
+      />
       <div className={styles['navbar-right']} ref={popupRef}>
         {isLoading ? (
           <Skeleton borderRadius="50%" height={40} width={40} />

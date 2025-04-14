@@ -28,7 +28,7 @@ const InsightBox: React.FC<IProps> = ({ data }) => {
           <Image
             alt={selectedNetwork}
             height={28}
-            src={`icons/social/${selectedNetwork}.svg`}
+            src={`/icons/social/${selectedNetwork}.svg`}
             width={28}
           />
           {selectedNetwork}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactECharts from 'echarts-for-react'; // Import ECharts component
+import { useTranslations } from 'next-intl';
 import SelectInput from '@/components/selectInput/SelectInput';
 import { SocialNetwork } from '@/types/statistics';
 import styles from './FollowerGrowthChart.module.css';
@@ -43,10 +44,12 @@ const FollowerGrowthChart: React.FC<IProps> = ({ chartData }) => {
     ],
   };
 
+  const t = useTranslations('Dashboard');
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Followers Growth</h3>
+        <h3 className={styles.title}>{t('followers-growth')}</h3>
         <div className={styles.filter}>
           <SelectInput
             options={Object.values(SocialNetwork)}

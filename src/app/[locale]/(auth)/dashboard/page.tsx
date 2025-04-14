@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, getDoc } from '@firebase/firestore';
+import { doc, getDoc, setDoc } from '@firebase/firestore';
 import withAuth from '@/lib/withAuth';
 import { auth, db } from '@/firebase/config';
 import InsightBox from '@/components/insightBox/InsightBox';
