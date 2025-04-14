@@ -49,7 +49,7 @@ const ActivitiesList: React.FC<IProps> = ({ activities }) => {
                 <Image
                   alt={item.website}
                   height={20}
-                  src={`icons/social/${item.website}.svg`}
+                  src={`/icons/social/${item.website}.svg`}
                   width={20}
                 />
                 {item.website}

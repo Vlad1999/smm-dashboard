@@ -1,23 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
 }
 .label {
   font-size: 16px;
   font-weight: 700;
-  color: #384d6c;
+  color: #131417;
+  font-family: Nunito;
 }
 .input-container {
   border: 1px solid #d1d5db;
   background-color: #ffffff;
   height: 52px;
-  font-size: 16px;
+  font-size: 18px;
   color: #abb1bb;
   border-radius: 8px;
   position: relative;
   max-height: 44px;
+  font-family: Nunito;
 }
 .input-container > input {
   width: 100%;

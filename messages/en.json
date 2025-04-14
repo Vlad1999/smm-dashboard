@@ -1,0 +1,10 @@
+{
+  "LocaleLayout": {
+    "title": "SMM Dashboard",
+    "description": "This is amazing SMM Dashboard"
+  },
+  "Dashboard": {
+    "followers-growth": "Followers Growth",
+    "all-activities": "All Activities"
+  }
+}

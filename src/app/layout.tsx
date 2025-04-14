@@ -1,32 +1,11 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { Lato, Nunito } from 'next/font/google';
+import { ReactNode } from 'react';
 
-const lato = Lato({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const nunito = Nunito({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-export const metadata: Metadata = {
-  title: 'SMM Dashboard',
-  description: 'This is amazing SMM Dashboard',
+type Props = {
+  children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html className={`${lato.className} ${nunito.className}`} lang="en" suppressHydrationWarning>
-      <body>{children}</body>
-    </html>
-  );
+// Since we have a `not-found.tsx` page on the root, a layout file
+// is required, even if it's just passing children through.
+export default function RootLayout({ children }: Props) {
+  return children;
 }

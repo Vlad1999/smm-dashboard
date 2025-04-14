@@ -11,6 +11,7 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   disabled?: boolean;
+  required?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,6 +23,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   type,
   disabled = false,
+  required = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -59,6 +61,7 @@ const Input: React.FC<InputProps> = ({
         <input
           disabled={disabled}
           placeholder={placeholder}
+          required={required}
           style={{ padding }}
           type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
           value={value}

@@ -1,21 +1,19 @@
 'use client';
 
 import React, { useState, FormEvent, useEffect } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/navigation';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, serverTimestamp, setDoc } from '@firebase/firestore';
-import Link from 'next/link';
-import { auth, db } from '@/firebase/config';
+import { Link, useRouter } from '@/i18n/navigation';
+import { auth } from '@/firebase/config';
 import styles from './page.module.css';
 
-const SignUp: React.FC = () => {
+const Login: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -29,38 +27,15 @@ const SignUp: React.FC = () => {
     return () => unsubscribe();
   }, [router]);
 
-  const addUser = async (uid: string, email: string) => {
-    try {
-      const userDoc = doc(db, 'users', uid);
-      await setDoc(userDoc, {
-        uid,
-        email,
-        createdAt: serverTimestamp(),
-        firstName: '',
-        lastName: '',
-        username: '',
-        position: '',
-        phone: '',
-        location: '',
-        timezone: '',
-      });
-    } catch (error) {
-      console.error('Error adding user to Firestore: ', error);
-    }
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(email, password);
-      if (userCredential?.user) {
-        await addUser(userCredential.user.uid, userCredential.user.email!);
-      }
+      await signInWithEmailAndPassword(email, password);
       setEmail('');
       setPassword('');
       router.push('/profile');
-    } catch (error) {
-      console.error('Error signing up: ', error);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -71,7 +46,7 @@ const SignUp: React.FC = () => {
   return (
     <div className={styles['page-wrapper']}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Sign Up</h2>
+        <h2 className={styles.title}>Login</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label className={styles.label} htmlFor="email">
@@ -100,12 +75,12 @@ const SignUp: React.FC = () => {
             />
           </div>
           <button className={styles.button} type="submit">
-            Sign Up
+            Login
           </button>
           <p className={styles.linkContainer}>
-            Have an account?{' '}
-            <Link className={styles.link} href="/login">
-              Log in
+            Don&apos;t have an account?{' '}
+            <Link className={styles.link} href="/sign-up">
+              Sign up
             </Link>
           </p>
         </form>
@@ -114,4 +89,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default Login;
