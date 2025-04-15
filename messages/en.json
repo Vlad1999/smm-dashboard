@@ -3,6 +3,11 @@
     "title": "SMM Dashboard",
     "description": "This is amazing SMM Dashboard"
   },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "calculator": "Calculator",
+    "calendar": "Calculator"
+  },
   "Profile": {
     "upload": "Upload Photo",
     "delete": "Delete",
@@ -15,8 +20,8 @@
     "location": "Location",
     "time": "Time Zone",
     "profile": "Profile",
-    "savechanges": "Save Changes"
-
+    "log-out": "Log out",
+    "save-changes": "Save Changes"
   },
   "Dashboard": {
     "followers-growth": "Followers Growth",
@@ -24,6 +29,16 @@
    "likes": "Likes",
     "followers": "Followers",
     "comments": "Comments",
-    "views": "Views"
+    "views": "Views",
+    "show-all": "Show all",
+    "inbox": "Inbox",
+    "follow-requests": "Follow Requests",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "trimester": "Trimester",
+    "sent-you-a-message": "Sent you a message",
+    "sent-you-a-follow-request": "Sent you a follow request",
+    "commented-on-your-post": "Commented on your post"
   }
 }

@@ -3,12 +3,14 @@ import Image from 'next/image';
 import useClickOutside from '@/hooks/useClickOutside';
 import styles from './SelectInput.module.css';
 
+export type Option = { label: string; value: string };
+
 interface SelectProps {
-  value: string;
-  onChange: (value: any) => void;
+  value: Option;
+  onChange: (value: Option) => void;
   label?: string;
   placeholder?: string;
-  options: string[];
+  options: Option[];
 }
 
 const SelectInput: React.FC<SelectProps> = ({ value, onChange, label, placeholder, options }) => {
@@ -18,7 +20,7 @@ const SelectInput: React.FC<SelectProps> = ({ value, onChange, label, placeholde
 
   const handleToggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: Option) => {
     onChange(option);
     setIsOpen(false);
   };
@@ -33,7 +35,7 @@ const SelectInput: React.FC<SelectProps> = ({ value, onChange, label, placeholde
         </label>
       )}
       <div className={styles['input-container']} onClick={handleToggleDropdown}>
-        <div className={styles['input-text']}>{value || placeholder}</div>
+        <div className={styles['input-text']}>{value.label || placeholder}</div>
         <Image
           alt="Right icon"
           className={isOpen ? `${styles['icon-right']} ${styles.open}` : styles['icon-right']}
@@ -45,7 +47,7 @@ const SelectInput: React.FC<SelectProps> = ({ value, onChange, label, placeholde
           <div className={styles.dropdown}>
             {options.map((option, index) => (
               <div className={styles.option} key={index} onClick={() => handleOptionClick(option)}>
-                {option}
+                {option.label}
               </div>
             ))}
           </div>

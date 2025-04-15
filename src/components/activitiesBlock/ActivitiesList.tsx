@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { format, formatDistanceToNow, isToday, isYesterday } from 'date-fns';
+import { format } from 'date-fns';
+import { useTranslations } from 'next-intl';
 import styles from '@/components/activitiesBlock/ActivitiesBlock.module.css';
 import { IActivity } from '@/components/activitiesBlock/ActivitiesBlock';
 
@@ -9,16 +10,18 @@ interface IProps {
 }
 
 const ActivitiesList: React.FC<IProps> = ({ activities }) => {
+  const t = useTranslations('Dashboard');
+
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);
 
-    if (isToday(date)) {
-      return formatDistanceToNow(date, { addSuffix: true });
-    }
-
-    if (isYesterday(date)) {
-      return 'yesterday';
-    }
+    // if (isToday(date)) {
+    //   return formatDistanceToNow(date, { addSuffix: true });
+    // }
+    //
+    // if (isYesterday(date)) {
+    //   return 'yesterday';
+    // }
 
     return format(date, 'dd.MM.yyyy');
   };
@@ -37,7 +40,7 @@ const ActivitiesList: React.FC<IProps> = ({ activities }) => {
               <Image alt="Default avatar" height={20} src="/default-avatar.png" width={20} />
               <p className={styles['action-info']}>
                 {`${item.firstname} ${item.lastname}`}{' '}
-                <span>{item.action.charAt(0).toUpperCase() + item.action.slice(1)}</span>
+                <span>{t(item.action.split(' ').join('-'))}</span>
               </p>
             </div>
 

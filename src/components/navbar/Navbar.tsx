@@ -8,10 +8,27 @@ import { doc, getDoc } from '@firebase/firestore';
 import { useLocale } from 'use-intl';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'next/navigation';
-import SelectInput from '@/components/selectInput/SelectInput';
-import useClickOutside from '@/hooks/useClickOutside';
+import { useTranslations } from 'next-intl';
 import { auth, db } from '@/firebase/config';
+import useClickOutside from '@/hooks/useClickOutside';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import styles from './Navbar.module.css';
+
+enum LOCALES {
+  EN = 'en',
+  HY = 'hy',
+}
+
+const LOCALE_OPTIONS = [
+  {
+    label: 'English',
+    value: LOCALES.EN,
+  },
+  {
+    label: 'Հայերեն',
+    value: LOCALES.HY,
+  },
+];
 
 interface NavbarProps {
   user: any;
@@ -20,13 +37,19 @@ interface NavbarProps {
 const Navbar = ({ user }: NavbarProps) => {
   const pathname = usePathname();
   const router = useRouter();
+
+  const locale = useLocale();
+
   const [isPopupShown, setIsPopupShown] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedLocale, setSelectedLocale] = useState<Option>(
+    () => LOCALE_OPTIONS.filter((el) => el.value === locale)[0],
+  );
 
-  const locale = useLocale();
+  const t = useTranslations('Profile');
 
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -63,8 +86,9 @@ const Navbar = ({ user }: NavbarProps) => {
     })();
   }, [user]);
 
-  const handleLocaleChange = (nextLocale: string) => {
-    router.replace({ pathname }, { locale: nextLocale });
+  const handleLocaleChange = (nextLocale: Option) => {
+    router.replace({ pathname }, { locale: nextLocale.value });
+    setSelectedLocale(nextLocale);
   };
 
   return (
@@ -73,8 +97,8 @@ const Navbar = ({ user }: NavbarProps) => {
       {/*  <p>{pathname.replace('/', '')}</p>*/}
       {/*</div>*/}
       <SelectInput
-        options={['en', 'hy']}
-        value={locale}
+        options={LOCALE_OPTIONS}
+        value={selectedLocale}
         onChange={(value) => handleLocaleChange(value)}
       />
       <div className={styles['navbar-right']} ref={popupRef}>
@@ -108,7 +132,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 router.push('/profile');
               }}
             >
-              Profile
+              {t('profile')}
             </button>
             <button
               className={styles.button}
@@ -117,7 +141,7 @@ const Navbar = ({ user }: NavbarProps) => {
                 signOut(auth);
               }}
             >
-              Logout
+              {t('log-out')}
             </button>
           </div>
         )}

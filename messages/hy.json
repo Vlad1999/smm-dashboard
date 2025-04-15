@@ -3,6 +3,11 @@
     "title": "SMM Dashboard",
     "description": "This is amazing SMM Dashboard"
   },
+  "Sidebar": {
+    "dashboard": "Վահանակ",
+    "calculator": "Հաշվիչ",
+    "calendar": "Օրացույց"
+  },
   "Profile": {
     "upload": "Վերբեռնել լուսանկար",
     "delete": "Ջնջել",
@@ -14,8 +19,9 @@
     "phone": "հեռախոսեհամար",
     "location": "Տեղակայման վայր",
     "time": "Ժամային գոտի",
-    "profile": "Պրոֆիլ",
-    "savechanges": "Պահպանել"
+    "profile": "Անձնական էջ",
+    "log-out": "Դուրս գալ",
+    "save-changes": "Պահպանել"
   },
   "Dashboard": {
     "followers-growth": "Հետևորդների աճ",
@@ -23,7 +29,16 @@
     "likes": "Հավանումներ",
     "followers": "Հետևորդներ",
     "comments": "Մեկնաբանություններ",
-    "views": "Դիտումներ"
-    
+    "views": "Դիտումներ",
+    "show-all": "Ցուցադրել բոլորը",
+    "inbox": "Նամակներ",
+    "follow-requests": "Հետևելու Հայտեր",
+    "day": "Օր",
+    "week": "Շաբաթ",
+    "month": "Ամիս",
+    "trimester": "Եռամսյակ",
+    "sent-you-a-message": "Ձեզ ուղարկել է հաղորդագրություն",
+    "sent-you-a-follow-request": "Ձեզ ուղարկել է հետևելու հարցում",
+    "commented-on-your-post": "Մեկնաբանել է ձեր գրառման տակ"
   }
 }

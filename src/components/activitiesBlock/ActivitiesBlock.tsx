@@ -4,8 +4,9 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Tabs from '@/components/tabs/Tabs';
 import ActivitiesList from '@/components/activitiesBlock/ActivitiesList';
-import SelectInput from '@/components/selectInput/SelectInput';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import { SocialNetwork } from '@/types/statistics';
+import { SOCIAL_NETWORK_OPTIONS } from '@/components/insightBox/InsightBox';
 import styles from './ActivitiesBlock.module.css';
 
 export interface IActivities {
@@ -36,26 +37,30 @@ interface IProps {
 }
 
 const ActivitiesBlock: React.FC<IProps> = ({ activities }) => {
-  const [selectedNetwork, setSelectedNetwork] = useState<SocialNetwork | 'Show all'>('Show all');
+  const t = useTranslations('Dashboard');
+
+  const [selectedNetwork, setSelectedNetwork] = useState<Option>({
+    label: t('show-all'),
+    value: 'all',
+  });
+
   const [allActivities, setAllActivities] = useState<IAllActivities[]>([
-    { key: 'message', label: 'Inbox', content: null },
+    { key: 'message', label: t('inbox'), content: null },
     {
       key: 'follow_request',
-      label: 'Follow Requests',
+      label: t('follow-requests'),
       content: null,
     },
-    { key: 'comment', label: 'Comments', content: null },
+    { key: 'comment', label: t('comments'), content: null },
   ]);
-
-  const t = useTranslations('Dashboard');
 
   useEffect(() => {
     if (activities) {
       const newActivities = allActivities.map((el: IAllActivities) => {
         const filteredActivities =
-          selectedNetwork !== 'Show all'
+          selectedNetwork.value !== 'all'
             ? activities[el.key].filter(
-                (activity: IActivity) => activity.website === selectedNetwork,
+                (activity: IActivity) => activity.website === selectedNetwork.value,
               )
             : activities[el.key];
 
@@ -73,7 +78,7 @@ const ActivitiesBlock: React.FC<IProps> = ({ activities }) => {
       <div className={styles.header}>
         <h3 className={styles.title}>{t('all-activities')}</h3>
         <SelectInput
-          options={Object.values({ All: 'Show all', ...SocialNetwork })}
+          options={[{ label: t('show-all'), value: 'all' }, ...SOCIAL_NETWORK_OPTIONS]}
           placeholder="Select a platform"
           value={selectedNetwork}
           onChange={(value) => setSelectedNetwork(value)}

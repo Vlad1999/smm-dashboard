@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { SocialNetwork, Statistics } from '@/types/statistics';
-import SelectInput from '@/components/selectInput/SelectInput';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import styles from './InsightBox.module.css';
 
 interface IProps {
   data: Statistics | null;
 }
 
+export const SOCIAL_NETWORK_OPTIONS = [
+  {
+    label: 'Facebook',
+    value: SocialNetwork.Facebook,
+  },
+  {
+    label: 'Instagram',
+    value: SocialNetwork.Instagram,
+  },
+  {
+    label: 'TikTok',
+    value: SocialNetwork.TikTok,
+  },
+  {
+    label: 'YouTube',
+    value: SocialNetwork.YouTube,
+  },
+];
+
 const InsightBox: React.FC<IProps> = ({ data }) => {
-  const [selectedNetwork, setSelectedNetwork] = useState<SocialNetwork>(SocialNetwork.Instagram);
+  const t = useTranslations('Dashboard');
+  const [selectedNetwork, setSelectedNetwork] = useState<Option>(SOCIAL_NETWORK_OPTIONS[0]);
 
   const formatNumber = (num: number): string => {
     if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M'; // 1.2M
@@ -26,27 +47,28 @@ const InsightBox: React.FC<IProps> = ({ data }) => {
       <div className={styles.header}>
         <h3 className={styles.title}>
           <Image
-            alt={selectedNetwork}
+            alt={selectedNetwork.value}
             height={28}
-            src={`/icons/social/${selectedNetwork}.svg`}
+            src={`/icons/social/${selectedNetwork.value}.svg`}
             width={28}
           />
-          {selectedNetwork}
+          {selectedNetwork.label}
         </h3>
         <SelectInput
-          options={Object.values(SocialNetwork)}
-          placeholder="Select a platform"
+          options={SOCIAL_NETWORK_OPTIONS}
           value={selectedNetwork}
           onChange={(value) => setSelectedNetwork(value)}
         />
       </div>
       <div className={styles.items}>
-        {Object.entries(data[selectedNetwork].statistics).map(([key, value]) => (
-          <div className={styles.item} key={key}>
-            <p className={styles['item-value']}>{formatNumber(value)}</p>
-            <p className={styles['item-label']}>{key}</p>
-          </div>
-        ))}
+        {Object.entries(data[selectedNetwork.value as SocialNetwork].statistics).map(
+          ([key, value]) => (
+            <div className={styles.item} key={key}>
+              <p className={styles['item-value']}>{formatNumber(value)}</p>
+              <p className={styles['item-label']}>{t(key)}</p>
+            </div>
+          ),
+        )}
       </div>
     </div>
   );

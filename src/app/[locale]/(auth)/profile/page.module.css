@@ -58,7 +58,10 @@
 }
 .buttons {
   display: flex;
-  gap: 44px;
+  gap: 24px;
+}
+.buttons button {
+  width: 210px;
 }
 .button-primary {
   padding: 16px 20px;
