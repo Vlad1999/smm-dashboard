@@ -12,6 +12,7 @@ import Input from '@/components/input/Input';
 import { auth, db } from '@/firebase/config';
 import styles from './page.module.css';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useTranslations } from 'next-intl';
 
 function ProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +33,9 @@ function ProfilePage() {
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const t = useTranslations('Profile');
+  
 
   // Fetch user data from Firestore
   const getUser = async () => {
@@ -148,7 +152,7 @@ function ProfilePage() {
           </div>
           <div className={styles.buttons}>
             <Button
-              text="Upload New Photo"
+              text={t("upload")}
               variant="primary"
               onClick={() => {
                 if (fileInputRef?.current !== null) {
@@ -164,7 +168,7 @@ function ProfilePage() {
               onChange={handleFileChange}
             />
             <Button
-              text="Delete"
+              text={t("delete")}
               variant="secondary"
               onClick={() => {
                 setBase64Image('');
@@ -177,13 +181,13 @@ function ProfilePage() {
       <div className={styles['form-container']}>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label="First Name"
+            label={t("firstname")}
             placeholder="eg. Jon"
             value={firstName}
             onChange={setFirstName}
           />
           <Input
-            label="Last Name"
+            label={t("lastname")}
             placeholder="eg. Smith"
             value={lastName}
             onChange={setLastName}
@@ -191,13 +195,13 @@ function ProfilePage() {
         </div>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label="Username"
+            label={t("username")}
             placeholder="eg. JonSmith"
             value={username}
             onChange={setUsername}
           />
           <Input
-            label="Position"
+            label={t("position")}
             placeholder="eg. Developer"
             value={position}
             onChange={setPosition}
@@ -207,14 +211,14 @@ function ProfilePage() {
       <div className={styles['form-container']}>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label="Email Address"
+            label={t("email")}
             leftIcon="/icons/Mail.svg"
             value={email}
             disabled
             onChange={setEmail}
           />
           <Input
-            label="Phone Number"
+            label={t("phone")}
             leftIcon="/icons/Phone.svg"
             value={phone}
             onChange={setPhone}
@@ -223,13 +227,13 @@ function ProfilePage() {
       </div>
       <div className={styles['form-container']}>
         <Input
-          label="Location"
+          label={t("location")}
           leftIcon="/icons/location.svg"
           value={location}
           onChange={setLocation}
         />
         <Input
-          label="Time Zone"
+          label={t("time")}
           leftIcon="/icons/clock.svg"
           value={timezone}
           onChange={setTimezone}
@@ -261,8 +265,8 @@ function ProfilePage() {
       {/*  />*/}
       {/*</div>*/}
       <div className={styles.buttons} style={{ justifyContent: 'flex-end' }}>
-        <Button text="Cancel" variant="secondary" onClick={() => {}} />
-        <Button text="Save Changes" variant="primary" onClick={handleSubmit} />
+        <Button text={t("profile")} variant="secondary" onClick={() => {}} />
+        <Button text={t("savechanges")} variant="primary" onClick={handleSubmit} />
       </div>
     </main>
   );

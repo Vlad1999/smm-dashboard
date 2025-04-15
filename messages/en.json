@@ -3,8 +3,27 @@
     "title": "SMM Dashboard",
     "description": "This is amazing SMM Dashboard"
   },
+  "Profile": {
+    "upload": "Upload Photo",
+    "delete": "Delete",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "username": "Username",
+    "position": "Position",
+    "email": "Email Address",
+    "phone": "Phone number",
+    "location": "Location",
+    "time": "Time Zone",
+    "profile": "Profile",
+    "savechanges": "Save Changes"
+
+  },
   "Dashboard": {
     "followers-growth": "Followers Growth",
-    "all-activities": "All Activities"
+    "all-activities": "All Activities",
+   "likes": "Likes",
+    "followers": "Followers",
+    "comments": "Comments",
+    "views": "Views"
   }
 }
