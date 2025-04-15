@@ -21,9 +21,19 @@
   "Dashboard": {
     "followers-growth": "Followers Growth",
     "all-activities": "All Activities",
-   "likes": "Likes",
+    "likes": "Likes",
     "followers": "Followers",
     "comments": "Comments",
     "views": "Views"
-  }
+  },
+  "Calculator": {
+    "engagementMetrics": "Engagement Metrics",
+    "costCalculations": "Cost Calculations",
+    "campaignPlanner": "Campaign Planner",
+    "influencerMetrics": "Influencer Metrics",
+    "header": "Social Media Marketing Calculator",
+    "description": "Use this calculator to estimate your campaign metrics including ROI, Cost Per Click, Influencer Performance, and more."
+  
 }
+}
+
