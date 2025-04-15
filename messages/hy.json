@@ -3,8 +3,27 @@
     "title": "SMM Dashboard",
     "description": "This is amazing SMM Dashboard"
   },
+  "Profile": {
+    "upload": "Վերբեռնել լուսանկար",
+    "delete": "Ջնջել",
+    "firstname": "Անուն",
+    "lastname": "Ազգանուն",
+    "username": "Օգտանուն",
+    "position": "Պաշտոն",
+    "email": "Էլ. փոստ",
+    "phone": "հեռախոսեհամար",
+    "location": "Տեղակայման վայր",
+    "time": "Ժամային գոտի",
+    "profile": "Պրոֆիլ",
+    "savechanges": "Պահպանել"
+  },
   "Dashboard": {
     "followers-growth": "Հետևորդների աճ",
-    "all-activities": "Ակտիվություն"
+    "all-activities": "Ակտիվություն",
+    "likes": "Հավանումներ",
+    "followers": "Հետևորդներ",
+    "comments": "Մեկնաբանություններ",
+    "views": "Դիտումներ"
+    
   }
 }

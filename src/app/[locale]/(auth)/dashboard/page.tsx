@@ -11,6 +11,7 @@ import FollowerGrowthChart from '@/components/followerGrowthChart/FollowerGrowth
 import PieChart from '@/components/pieChart/PieChart';
 import ActivitiesBlock, { IActivity } from '@/components/activitiesBlock/ActivitiesBlock';
 import styles from './page.module.css';
+import { useTranslations } from 'next-intl';
 
 export interface TransformedData {
   likes: { value: string; name: string }[];
@@ -18,6 +19,7 @@ export interface TransformedData {
   comments: { value: string; name: string }[];
   views: { value: string; name: string }[];
 }
+
 
 function DashboardPage() {
   const [user] = useAuthState(auth);
@@ -85,6 +87,8 @@ function DashboardPage() {
     return groupedActivities;
   };
 
+  const t = useTranslations('Dashboard');
+
   return (
     <main className={styles.container}>
       <div className={styles['inner-container']}>
@@ -92,10 +96,10 @@ function DashboardPage() {
         {stats && <FollowerGrowthChart chartData={stats} />}
         {stats && (
           <div className={styles['charts-wrapper']}>
-            <PieChart data={transformData(stats).likes} title="Likes" />
-            <PieChart data={transformData(stats).followers} title="Followers" />
-            <PieChart data={transformData(stats).comments} title="Comments" />
-            <PieChart data={transformData(stats).views} title="Views" />
+            <PieChart data={transformData(stats).likes} title={t("likes")} />
+            <PieChart data={transformData(stats).followers} title={t("followers")} />
+            <PieChart data={transformData(stats).comments} title={t("comments")} />
+            <PieChart data={transformData(stats).views} title={t("views")} />
           </div>
         )}
       </div>
