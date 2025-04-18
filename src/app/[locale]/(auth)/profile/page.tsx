@@ -182,6 +182,7 @@ function ProfilePage() {
           <Input
             label={t('firstname')}
             placeholder="eg. Jon"
+            type="text"
             value={firstName}
             onChange={setFirstName}
           />

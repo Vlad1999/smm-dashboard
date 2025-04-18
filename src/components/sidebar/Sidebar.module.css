@@ -1,10 +1,10 @@
 .sidebar {
-  width: 200px; /* Fixed width for the sidebar */
-  height: 100vh; /* Full height of the viewport */
+  width: 200px;
+  height: 100vh;
   background-color: #ffffff;
   color: white;
   padding-top: 20px;
-  position: fixed; /* Fixed position to stay on the left */
+  position: fixed;
   top: 0;
   left: 0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;

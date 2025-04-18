@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/components/input/Input';
-import SelectInput from '@/components/selectInput/SelectInput';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
 import styles from './ROICalculators.module.css';
-import { useTranslations } from 'next-intl'
 
 const ROICalculators: React.FC = () => {
-  const { convert, convertBack, loading, currencies } = useCurrencyConversion('USD'); // Keep USD as the base
-  const [currency, setCurrency] = useState<string>('USD');
+  const { convert, convertBack, currencies } = useCurrencyConversion('USD');
+  const [currency, setCurrency] = useState<Option>({ label: 'USD', value: 'USD' });
 
   const [cost, setCost] = useState(0);
   const [revenue, setRevenue] = useState(0);
@@ -27,75 +27,73 @@ const ROICalculators: React.FC = () => {
   const [convertedCpa, setConvertedCpa] = useState(cpa);
 
   useEffect(() => {
-    setConvertedCost(convert(cost, currency));
-    setConvertedRevenue(convert(revenue, currency));
-    setConvertedCpc(convert(cpc, currency));
-    setConvertedCpm(convert(cpm, currency));
-    setConvertedCpa(convert(cpa, currency));
+    setConvertedCost(convert(cost, currency.value));
+    setConvertedRevenue(convert(revenue, currency.value));
+    setConvertedCpc(convert(cpc, currency.value));
+    setConvertedCpm(convert(cpm, currency.value));
+    setConvertedCpa(convert(cpa, currency.value));
   }, [currency, cost, revenue, clicks, impressions, acquisitions]);
 
   const t = useTranslations('Calculator');
-  
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>{t("rcc")}</h2>
+        <h2 className={styles.heading}>{t('rcc')}</h2>
         <SelectInput
-          options={currencies}
-          placeholder={t("currency")}
+          options={currencies.map((item) => ({ label: item, value: item }))}
+          placeholder={t('currency')}
           value={currency}
           onChange={setCurrency}
         />
       </div>
       <div className={styles.inputsGrid}>
         <Input
-          label={`totalAdSpend (${currency})`}
+          label={t('total-ad-spend', { currency: currency.value })}
           value={Math.round(convertedCost).toString()}
           onChange={(value) => {
             const newCost = Number(value);
             setConvertedCost(newCost);
-            setCost(convertBack(newCost, currency));
+            setCost(convertBack(newCost, currency.value));
           }}
         />
         <Input
-          label={`Revenue Generated (${currency})`}
+          label={t('revenue-generated', { currency: currency.value })}
           value={Math.round(convertedRevenue).toString()}
           onChange={(value) => {
             const newRevenue = Number(value);
             setConvertedRevenue(newRevenue);
-            setRevenue(convertBack(newRevenue, currency));
+            setRevenue(convertBack(newRevenue, currency.value));
           }}
         />
         <Input
-          label={t("clicks")}
+          label={t('clicks')}
           value={clicks.toString()}
           onChange={(value) => setClicks(Number(value))}
         />
         <Input
-          label={t("impressions")}
+          label={t('impressions')}
           value={impressions.toString()}
           onChange={(value) => setImpressions(Number(value))}
         />
         <Input
-          label={t("acquisitions")}
+          label={t('acquisitions')}
           value={acquisitions.toString()}
           onChange={(value) => setAcquisitions(Number(value))}
         />
       </div>
-
       <div className={styles.results}>
         <p>
-          <strong>{t("roi")}</strong> {roi.toFixed(2)}%
+          <strong>{t('roi')}</strong> {roi.toFixed(2)}%
         </p>
         <p>
-          <strong>{t("cpc")}</strong> {currency} {convertedCpc.toFixed(2)}
+          <strong>{t('cpc')}</strong> {currency.value} {convertedCpc.toFixed(2)}
         </p>
         <p>
-          <strong>{t("cpm")}</strong> {currency} {convertedCpm.toFixed(2)}
+          <strong>{t('cpm')}</strong> {currency.value} {convertedCpm.toFixed(2)}
         </p>
         <p>
-          <strong>{t("cpa")}</strong> {currency} {convertedCpa.toFixed(2)}
+          <strong>{t('cpa')}</strong> {currency.value} {convertedCpa.toFixed(2)}
         </p>
       </div>
     </div>
