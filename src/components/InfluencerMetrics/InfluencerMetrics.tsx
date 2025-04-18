@@ -3,6 +3,7 @@ import Input from '@/components/input/Input';
 import SelectInput from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
 import styles from './InfluencerMetrics.module.css';
+import { useTranslations } from 'next-intl'
 
 const InfluencerMetrics: React.FC = () => {
   const { convert, convertBack, currencies } = useCurrencyConversion('USD');
@@ -30,13 +31,15 @@ const InfluencerMetrics: React.FC = () => {
     setConvertedRoi(convert(roi, currency));
   }, [currency, cost, revenue, followers, engagementRate, totalEngagements]);
 
+  const t = useTranslations('Calculator');
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>🤝 Influencer & Partnership Metrics</h2>
+        <h2 className={styles.heading}>{t("ipm")}</h2>
         <SelectInput
           options={currencies}
-          placeholder="Select currency"
+          placeholder={t("currency")}
           value={currency}
           onChange={setCurrency}
         />
@@ -44,17 +47,17 @@ const InfluencerMetrics: React.FC = () => {
 
       <div className={styles.grid}>
         <Input
-          label="Influencer Followers"
+          label={t("InfluencerFollowers")}
           value={followers.toString()}
           onChange={(value) => setFollowers(Number(value))}
         />
         <Input
-          label="Engagement Rate (%)"
+          label={t("Engagementrate")}
           value={engagementRate.toString()}
           onChange={(value) => setEngagementRate(Number(value))}
         />
         <Input
-          label="Total Engagements"
+          label={t("TotalEngagements")}
           value={totalEngagements.toString()}
           onChange={(value) => setTotalEngagements(Number(value))}
         />
@@ -80,13 +83,13 @@ const InfluencerMetrics: React.FC = () => {
 
       <div className={styles.results}>
         <p className={styles.resultItem}>
-          <strong>Estimated Reach Value:</strong> {estimatedReach.toFixed(0)} users
+          <strong>{t("EstReachValue")}</strong> {estimatedReach.toFixed(0)} users
         </p>
         <p className={styles.resultItem}>
-          <strong>Cost Per Engagement (CPE):</strong> {currency} {convertedCpe.toFixed(2)}
+          <strong>{t("cpe")}</strong> {currency} {convertedCpe.toFixed(2)}
         </p>
         <p className={styles.resultItem}>
-          <strong>Partnership ROI:</strong> {convertedRoi.toFixed(2)}%
+          <strong>{t("partROI")}</strong> {convertedRoi.toFixed(2)}%
         </p>
       </div>
     </div>
