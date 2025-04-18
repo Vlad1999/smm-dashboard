@@ -3,6 +3,7 @@ import useCurrencyConversion from '@/hooks/useCurrencyConversion';
 import SelectInput from '@/components/selectInput/SelectInput';
 import Input from '@/components/input/Input';
 import styles from './CampaignPlanner.module.css';
+import { useTranslations } from 'next-intl'
 
 const CampaignPlanner: React.FC = () => {
   const { convert, convertBack, currencies } = useCurrencyConversion('USD');
@@ -27,13 +28,15 @@ const CampaignPlanner: React.FC = () => {
   const estimatedClicks = convertedCpc > 0 ? convertedBudget / convertedCpc : 0;
   const estimatedImpressions = convertedCpm > 0 ? (convertedBudget / convertedCpm) * 1000 : 0;
 
+  const t = useTranslations('Calculator');
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>💰 Campaign & Budget Planner</h2>
+        <h2 className={styles.heading}>{t("cbp")}</h2>
         <SelectInput
           options={currencies}
-          placeholder="Select currency"
+          placeholder={t("currency")}
           value={currency}
           onChange={setCurrency}
         />
@@ -51,7 +54,7 @@ const CampaignPlanner: React.FC = () => {
             }}
           />
           <Input
-            label="Campaign Duration (days)"
+            label={t("campaignduration")}
             value={duration.toString()}
             onChange={(value) => setDuration(Number(value))}
           />
@@ -77,13 +80,13 @@ const CampaignPlanner: React.FC = () => {
 
         <div className={styles.results}>
           <p className={styles.resultItem}>
-            <strong>Daily Budget:</strong> {currency} {dailyBudget.toFixed(2)}
+            <strong>{t("dailybudget")}</strong> {currency} {dailyBudget.toFixed(2)}
           </p>
           <p className={styles.resultItem}>
-            <strong>Estimated Clicks:</strong> {estimatedClicks.toFixed(0)}
+            <strong>{t("estimatedclicks")}</strong> {estimatedClicks.toFixed(0)}
           </p>
           <p className={styles.resultItem}>
-            <strong>Estimated Impressions:</strong> {estimatedImpressions.toFixed(0)}
+            <strong>{t("estimatedimpressions")}</strong> {estimatedImpressions.toFixed(0)}
           </p>
         </div>
       </div>

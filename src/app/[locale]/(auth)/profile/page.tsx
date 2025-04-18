@@ -6,13 +6,13 @@ import { doc, getDoc, updateDoc } from '@firebase/firestore';
 import Image from 'next/image';
 import Avatar from 'react-avatar';
 import Skeleton from 'react-loading-skeleton';
+import { useTranslations } from 'next-intl';
 import withAuth from '@/lib/withAuth';
 import Button from '@/components/button/Button';
 import Input from '@/components/input/Input';
 import { auth, db } from '@/firebase/config';
 import styles from './page.module.css';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useTranslations } from 'next-intl';
 
 function ProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -35,7 +35,6 @@ function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const t = useTranslations('Profile');
-  
 
   // Fetch user data from Firestore
   const getUser = async () => {
@@ -152,7 +151,7 @@ function ProfilePage() {
           </div>
           <div className={styles.buttons}>
             <Button
-              text={t("upload")}
+              text={t('upload')}
               variant="primary"
               onClick={() => {
                 if (fileInputRef?.current !== null) {
@@ -168,7 +167,7 @@ function ProfilePage() {
               onChange={handleFileChange}
             />
             <Button
-              text={t("delete")}
+              text={t('delete')}
               variant="secondary"
               onClick={() => {
                 setBase64Image('');
@@ -181,13 +180,13 @@ function ProfilePage() {
       <div className={styles['form-container']}>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label={t("firstname")}
+            label={t('firstname')}
             placeholder="eg. Jon"
             value={firstName}
             onChange={setFirstName}
           />
           <Input
-            label={t("lastname")}
+            label={t('lastname')}
             placeholder="eg. Smith"
             value={lastName}
             onChange={setLastName}
@@ -195,13 +194,13 @@ function ProfilePage() {
         </div>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label={t("username")}
+            label={t('username')}
             placeholder="eg. JonSmith"
             value={username}
             onChange={setUsername}
           />
           <Input
-            label={t("position")}
+            label={t('position')}
             placeholder="eg. Developer"
             value={position}
             onChange={setPosition}
@@ -211,29 +210,24 @@ function ProfilePage() {
       <div className={styles['form-container']}>
         <div className={styles['form-inner-wrapper']}>
           <Input
-            label={t("email")}
+            label={t('email')}
             leftIcon="/icons/Mail.svg"
             value={email}
             disabled
             onChange={setEmail}
           />
-          <Input
-            label={t("phone")}
-            leftIcon="/icons/Phone.svg"
-            value={phone}
-            onChange={setPhone}
-          />
+          <Input label={t('phone')} leftIcon="/icons/Phone.svg" value={phone} onChange={setPhone} />
         </div>
       </div>
       <div className={styles['form-container']}>
         <Input
-          label={t("location")}
+          label={t('location')}
           leftIcon="/icons/location.svg"
           value={location}
           onChange={setLocation}
         />
         <Input
-          label={t("time")}
+          label={t('time')}
           leftIcon="/icons/clock.svg"
           value={timezone}
           onChange={setTimezone}
@@ -265,8 +259,8 @@ function ProfilePage() {
       {/*  />*/}
       {/*</div>*/}
       <div className={styles.buttons} style={{ justifyContent: 'flex-end' }}>
-        <Button text={t("profile")} variant="secondary" onClick={() => {}} />
-        <Button text={t("savechanges")} variant="primary" onClick={handleSubmit} />
+        <Button text={t('profile')} variant="secondary" onClick={() => {}} />
+        <Button text={t('save-changes')} variant="primary" onClick={handleSubmit} />
       </div>
     </main>
   );

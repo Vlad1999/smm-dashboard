@@ -35,7 +35,8 @@
 
 .item:not(:last-child) {
   border-right: 1px solid #e5e6ea;
-  margin-right: 22px;
+  margin-right: 16px;
+  padding-right: 16px;
 }
 
 .item-label {

@@ -3,6 +3,7 @@ import Input from '@/components/input/Input';
 import SelectInput from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
 import styles from './ROICalculators.module.css';
+import { useTranslations } from 'next-intl'
 
 const ROICalculators: React.FC = () => {
   const { convert, convertBack, loading, currencies } = useCurrencyConversion('USD'); // Keep USD as the base
@@ -33,20 +34,23 @@ const ROICalculators: React.FC = () => {
     setConvertedCpa(convert(cpa, currency));
   }, [currency, cost, revenue, clicks, impressions, acquisitions]);
 
+  const t = useTranslations('Calculator');
+  
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>📊 ROI & Cost Calculators</h2>
+        <h2 className={styles.heading}>{t("rcc")}</h2>
         <SelectInput
           options={currencies}
-          placeholder="Select currency"
+          placeholder={t("currency")}
           value={currency}
           onChange={setCurrency}
         />
       </div>
       <div className={styles.inputsGrid}>
         <Input
-          label={`Total Ad Spend (${currency})`}
+          label={`totalAdSpend (${currency})`}
           value={Math.round(convertedCost).toString()}
           onChange={(value) => {
             const newCost = Number(value);
@@ -64,17 +68,17 @@ const ROICalculators: React.FC = () => {
           }}
         />
         <Input
-          label="Clicks"
+          label={t("clicks")}
           value={clicks.toString()}
           onChange={(value) => setClicks(Number(value))}
         />
         <Input
-          label="Impressions"
+          label={t("impressions")}
           value={impressions.toString()}
           onChange={(value) => setImpressions(Number(value))}
         />
         <Input
-          label="Acquisitions"
+          label={t("acquisitions")}
           value={acquisitions.toString()}
           onChange={(value) => setAcquisitions(Number(value))}
         />
@@ -82,16 +86,16 @@ const ROICalculators: React.FC = () => {
 
       <div className={styles.results}>
         <p>
-          <strong>ROI:</strong> {roi.toFixed(2)}%
+          <strong>{t("roi")}</strong> {roi.toFixed(2)}%
         </p>
         <p>
-          <strong>Cost Per Click (CPC):</strong> {currency} {convertedCpc.toFixed(2)}
+          <strong>{t("cpc")}</strong> {currency} {convertedCpc.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Mille (CPM):</strong> {currency} {convertedCpm.toFixed(2)}
+          <strong>{t("cpm")}</strong> {currency} {convertedCpm.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Acquisition (CPA):</strong> {currency} {convertedCpa.toFixed(2)}
+          <strong>{t("cpa")}</strong> {currency} {convertedCpa.toFixed(2)}
         </p>
       </div>
     </div>
