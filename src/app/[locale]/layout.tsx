@@ -60,6 +60,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
+        <div id="modal-root"></div>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

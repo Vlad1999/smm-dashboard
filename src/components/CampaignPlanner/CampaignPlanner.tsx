@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
-import SelectInput from '@/components/selectInput/SelectInput';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import Input from '@/components/input/Input';
 import styles from './CampaignPlanner.module.css';
 
 const CampaignPlanner: React.FC = () => {
   const { convert, convertBack, currencies } = useCurrencyConversion('USD');
-  const [currency, setCurrency] = useState<string>('USD');
+  const [currency, setCurrency] = useState<Option>({ label: 'USD', value: 'USD' });
 
   const [baseBudget, setBaseBudget] = useState(1000);
   const [baseCpc, setBaseCpc] = useState(2);
@@ -18,9 +18,9 @@ const CampaignPlanner: React.FC = () => {
   const [convertedCpm, setConvertedCpm] = useState(baseCpm);
 
   useEffect(() => {
-    setConvertedBudget(convert(baseBudget, currency));
-    setConvertedCpc(convert(baseCpc, currency));
-    setConvertedCpm(convert(baseCpm, currency));
+    setConvertedBudget(convert(baseBudget, currency.value));
+    setConvertedCpc(convert(baseCpc, currency.value));
+    setConvertedCpm(convert(baseCpm, currency.value));
   }, [currency, baseBudget, baseCpc, baseCpm]);
 
   const dailyBudget = duration > 0 ? convertedBudget / duration : 0;
@@ -32,7 +32,7 @@ const CampaignPlanner: React.FC = () => {
       <div className={styles.header}>
         <h2 className={styles.heading}>💰 Campaign & Budget Planner</h2>
         <SelectInput
-          options={currencies}
+          options={currencies.map((item) => ({ label: item, value: item }))}
           placeholder="Select currency"
           value={currency}
           onChange={setCurrency}
@@ -42,12 +42,12 @@ const CampaignPlanner: React.FC = () => {
       <div className={styles.section}>
         <div className={styles.grid}>
           <Input
-            label={`Total Budget (${currency})`}
+            label={`Total Budget (${currency.value})`}
             value={Math.round(convertedBudget).toString()}
             onChange={(value) => {
               const newBudget = Number(value);
               setConvertedBudget(newBudget);
-              setBaseBudget(convertBack(newBudget, currency));
+              setBaseBudget(convertBack(newBudget, currency.value));
             }}
           />
           <Input
@@ -56,28 +56,28 @@ const CampaignPlanner: React.FC = () => {
             onChange={(value) => setDuration(Number(value))}
           />
           <Input
-            label={`Estimated CPC (${currency})`}
+            label={`Estimated CPC (${currency.value})`}
             value={Math.round(convertedCpc).toString()}
             onChange={(value) => {
               const newCpc = Number(value);
               setConvertedCpc(newCpc);
-              setBaseCpc(convertBack(newCpc, currency));
+              setBaseCpc(convertBack(newCpc, currency.value));
             }}
           />
           <Input
-            label={`Estimated CPM (${currency})`}
+            label={`Estimated CPM (${currency.value})`}
             value={Math.round(convertedCpm).toString()}
             onChange={(value) => {
               const newCpm = Number(value);
               setConvertedCpm(newCpm);
-              setBaseCpm(convertBack(newCpm, currency));
+              setBaseCpm(convertBack(newCpm, currency.value));
             }}
           />
         </div>
 
         <div className={styles.results}>
           <p className={styles.resultItem}>
-            <strong>Daily Budget:</strong> {currency} {dailyBudget.toFixed(2)}
+            <strong>Daily Budget:</strong> {currency.value} {dailyBudget.toFixed(2)}
           </p>
           <p className={styles.resultItem}>
             <strong>Estimated Clicks:</strong> {estimatedClicks.toFixed(0)}

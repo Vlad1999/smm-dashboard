@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Input from '@/components/input/Input';
-import SelectInput from '@/components/selectInput/SelectInput';
+import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
 import styles from './ROICalculators.module.css';
 
 const ROICalculators: React.FC = () => {
-  const { convert, convertBack, loading, currencies } = useCurrencyConversion('USD'); // Keep USD as the base
-  const [currency, setCurrency] = useState<string>('USD');
+  const { convert, convertBack, currencies } = useCurrencyConversion('USD');
+  const [currency, setCurrency] = useState<Option>({ label: 'USD', value: 'USD' });
 
   const [cost, setCost] = useState(0);
   const [revenue, setRevenue] = useState(0);
@@ -26,11 +26,11 @@ const ROICalculators: React.FC = () => {
   const [convertedCpa, setConvertedCpa] = useState(cpa);
 
   useEffect(() => {
-    setConvertedCost(convert(cost, currency));
-    setConvertedRevenue(convert(revenue, currency));
-    setConvertedCpc(convert(cpc, currency));
-    setConvertedCpm(convert(cpm, currency));
-    setConvertedCpa(convert(cpa, currency));
+    setConvertedCost(convert(cost, currency.value));
+    setConvertedRevenue(convert(revenue, currency.value));
+    setConvertedCpc(convert(cpc, currency.value));
+    setConvertedCpm(convert(cpm, currency.value));
+    setConvertedCpa(convert(cpa, currency.value));
   }, [currency, cost, revenue, clicks, impressions, acquisitions]);
 
   return (
@@ -38,7 +38,7 @@ const ROICalculators: React.FC = () => {
       <div className={styles.header}>
         <h2 className={styles.heading}>📊 ROI & Cost Calculators</h2>
         <SelectInput
-          options={currencies}
+          options={currencies.map((item) => ({ label: item, value: item }))}
           placeholder="Select currency"
           value={currency}
           onChange={setCurrency}
@@ -46,21 +46,21 @@ const ROICalculators: React.FC = () => {
       </div>
       <div className={styles.inputsGrid}>
         <Input
-          label={`Total Ad Spend (${currency})`}
+          label={`Total Ad Spend (${currency.value})`}
           value={Math.round(convertedCost).toString()}
           onChange={(value) => {
             const newCost = Number(value);
             setConvertedCost(newCost);
-            setCost(convertBack(newCost, currency));
+            setCost(convertBack(newCost, currency.value));
           }}
         />
         <Input
-          label={`Revenue Generated (${currency})`}
+          label={`Revenue Generated (${currency.value})`}
           value={Math.round(convertedRevenue).toString()}
           onChange={(value) => {
             const newRevenue = Number(value);
             setConvertedRevenue(newRevenue);
-            setRevenue(convertBack(newRevenue, currency));
+            setRevenue(convertBack(newRevenue, currency.value));
           }}
         />
         <Input
@@ -85,13 +85,13 @@ const ROICalculators: React.FC = () => {
           <strong>ROI:</strong> {roi.toFixed(2)}%
         </p>
         <p>
-          <strong>Cost Per Click (CPC):</strong> {currency} {convertedCpc.toFixed(2)}
+          <strong>Cost Per Click (CPC):</strong> {currency.value} {convertedCpc.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Mille (CPM):</strong> {currency} {convertedCpm.toFixed(2)}
+          <strong>Cost Per Mille (CPM):</strong> {currency.value} {convertedCpm.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Acquisition (CPA):</strong> {currency} {convertedCpa.toFixed(2)}
+          <strong>Cost Per Acquisition (CPA):</strong> {currency.value} {convertedCpa.toFixed(2)}
         </p>
       </div>
     </div>

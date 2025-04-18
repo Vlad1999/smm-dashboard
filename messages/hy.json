@@ -40,5 +40,11 @@
     "sent-you-a-message": "Ձեզ ուղարկել է հաղորդագրություն",
     "sent-you-a-follow-request": "Ձեզ ուղարկել է հետևելու հարցում",
     "commented-on-your-post": "Մեկնաբանել է ձեր գրառման տակ"
+  },
+  "Calendar": {
+    "today": "Այսօր",
+    "month": "Ամիս",
+    "week": "Շաբաթ",
+    "day": "Օր"
   }
 }

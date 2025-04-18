@@ -40,5 +40,11 @@
     "sent-you-a-message": "Sent you a message",
     "sent-you-a-follow-request": "Sent you a follow request",
     "commented-on-your-post": "Commented on your post"
+  },
+  "Calendar": {
+    "today": "Today",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day"
   }
 }

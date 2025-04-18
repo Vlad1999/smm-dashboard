@@ -21,3 +21,16 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+a.fc-event, a.fc-event:hover {
+  background: transparent;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background: #edf6ff;
+}
+
+.fc-button-group button {
+  font-family: Nunito;
+  box-shadow: none !important;
+}
