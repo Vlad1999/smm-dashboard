@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/components/input/Input';
 import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
@@ -33,20 +34,22 @@ const ROICalculators: React.FC = () => {
     setConvertedCpa(convert(cpa, currency.value));
   }, [currency, cost, revenue, clicks, impressions, acquisitions]);
 
+  const t = useTranslations('Calculator');
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>📊 ROI & Cost Calculators</h2>
+        <h2 className={styles.heading}>{t('rcc')}</h2>
         <SelectInput
           options={currencies.map((item) => ({ label: item, value: item }))}
-          placeholder="Select currency"
+          placeholder={t('currency')}
           value={currency}
           onChange={setCurrency}
         />
       </div>
       <div className={styles.inputsGrid}>
         <Input
-          label={`Total Ad Spend (${currency.value})`}
+          label={t('total-ad-spend', { currency: currency.value })}
           value={Math.round(convertedCost).toString()}
           onChange={(value) => {
             const newCost = Number(value);
@@ -55,7 +58,7 @@ const ROICalculators: React.FC = () => {
           }}
         />
         <Input
-          label={`Revenue Generated (${currency.value})`}
+          label={t('revenue-generated', { currency: currency.value })}
           value={Math.round(convertedRevenue).toString()}
           onChange={(value) => {
             const newRevenue = Number(value);
@@ -64,34 +67,33 @@ const ROICalculators: React.FC = () => {
           }}
         />
         <Input
-          label="Clicks"
+          label={t('clicks')}
           value={clicks.toString()}
           onChange={(value) => setClicks(Number(value))}
         />
         <Input
-          label="Impressions"
+          label={t('impressions')}
           value={impressions.toString()}
           onChange={(value) => setImpressions(Number(value))}
         />
         <Input
-          label="Acquisitions"
+          label={t('acquisitions')}
           value={acquisitions.toString()}
           onChange={(value) => setAcquisitions(Number(value))}
         />
       </div>
-
       <div className={styles.results}>
         <p>
-          <strong>ROI:</strong> {roi.toFixed(2)}%
+          <strong>{t('roi')}</strong> {roi.toFixed(2)}%
         </p>
         <p>
-          <strong>Cost Per Click (CPC):</strong> {currency.value} {convertedCpc.toFixed(2)}
+          <strong>{t('cpc')}</strong> {currency.value} {convertedCpc.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Mille (CPM):</strong> {currency.value} {convertedCpm.toFixed(2)}
+          <strong>{t('cpm')}</strong> {currency.value} {convertedCpm.toFixed(2)}
         </p>
         <p>
-          <strong>Cost Per Acquisition (CPA):</strong> {currency.value} {convertedCpa.toFixed(2)}
+          <strong>{t('cpa')}</strong> {currency.value} {convertedCpa.toFixed(2)}
         </p>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '@/components/input/Input';
 import styles from './EngagementMetrics.module.css';
+import { useTranslations } from 'next-intl';
 
 const EngagementMetrics: React.FC = () => {
   const [likes, setLikes] = useState(0);
@@ -18,47 +19,49 @@ const EngagementMetrics: React.FC = () => {
   const ctr = impressions > 0 ? (clicks / impressions) * 100 : 0;
   const conversionRate = clicks > 0 ? (conversions / clicks) * 100 : 0;
 
+  const t = useTranslations('Calculator');
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>📈 Engagement & Performance Metrics</h2>
+      <h2 className={styles.heading}>{t('epmetrics')}</h2>
       <div className={styles.inputsGrid}>
         <Input
-          label="Likes"
+          label={t("likes")}
           value={likes.toString()}
           onChange={(value) => setLikes(Number(value))}
         />
         <Input
-          label="Comments"
+          label={t("comments")}
           value={comments.toString()}
           onChange={(value) => setComments(Number(value))}
         />
         <Input
-          label="Shares"
+          label={t("shares")}
           value={shares.toString()}
           onChange={(value) => setShares(Number(value))}
         />
         <Input
-          label="Followers"
+          label={t("followers")}
           value={followers.toString()}
           onChange={(value) => setFollowers(Number(value))}
         />
         <Input
-          label="Reach"
+          label={t("reach")}
           value={reach.toString()}
           onChange={(value) => setReach(Number(value))}
         />
         <Input
-          label="Impressions"
+          label={t("impressions")}
           value={impressions.toString()}
           onChange={(value) => setImpressions(Number(value))}
         />
         <Input
-          label="Clicks"
+          label={t("clicks")}
           value={clicks.toString()}
           onChange={(value) => setClicks(Number(value))}
         />
         <Input
-          label="Conversions"
+          label={t("conversions")}
           value={conversions.toString()}
           onChange={(value) => setConversions(Number(value))}
         />
@@ -66,19 +69,19 @@ const EngagementMetrics: React.FC = () => {
 
       <div className={styles.results}>
         <p>
-          <strong>Engagement Rate:</strong> {engagementRate.toFixed(2)}%
+          <strong>{t('EngagementRate')}</strong> {engagementRate.toFixed(2)}%
         </p>
         <p>
-          <strong>Reach Rate:</strong> {reachRate.toFixed(2)}%
+          <strong>{t('ReachRate')}</strong> {reachRate.toFixed(2)}%
         </p>
         <p>
-          <strong>Impressions per Follower:</strong> {impressionsPerFollower.toFixed(2)}
+          <strong>{t('ImpressionsperFollower')}</strong> {impressionsPerFollower.toFixed(2)}
         </p>
         <p>
-          <strong>Click-Through Rate (CTR):</strong> {ctr.toFixed(2)}%
+          <strong>{t('Click-ThroughRate(CTR)')}</strong> {ctr.toFixed(2)}%
         </p>
         <p>
-          <strong>Conversion Rate:</strong> {conversionRate.toFixed(2)}%
+          <strong>{t('ConversionRate')}</strong> {conversionRate.toFixed(2)}%
         </p>
       </div>
     </div>
@@ -86,3 +89,4 @@ const EngagementMetrics: React.FC = () => {
 };
 
 export default EngagementMetrics;
+

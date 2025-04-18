@@ -9,19 +9,22 @@ import CampaignPlanner from '@/components/CampaignPlanner/CampaignPlanner';
 import InfluencerMetrics from '@/components/InfluencerMetrics/InfluencerMetrics';
 import SelectInput from '@/components/selectInput/SelectInput';
 import styles from './page.module.css';
+import { useTranslations } from 'next-intl';
 
 function CalculatorPage() {
   const [currency, setCurrency] = useState('USD');
 
+  const t = useTranslations('Calculator');
+
   const tabs = [
     {
       key: 'engagementMetrics',
-      label: 'Engagement Metrics',
+      label: t('engagementMetrics'),
       content: <EngagementMetrics />,
     },
     {
       key: 'costCalculations',
-      label: ' ROI & Cost Calculations',
+      label: t('costCalculations'),
       content: <ROICalculators />,
     },
     // {
@@ -36,23 +39,23 @@ function CalculatorPage() {
     // },
     {
       key: 'campaignPlanner',
-      label: 'Campaign Planner',
+      label: t('campaignPlanner'),
       content: <CampaignPlanner />,
     },
     {
       key: 'influencerMetrics',
-      label: 'InfluencerMetrics',
+      label: t('influencerMetrics'),
       content: <InfluencerMetrics />,
     },
   ];
 
+
   return (
     <main className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Social Media Marketing Calculator</h2>
+        <h2 className={styles.title}>{t("header")}</h2>
         <p className={styles.description}>
-          Use this calculator to estimate your campaign metrics including ROI, Cost Per Click,
-          Influencer Performance, and more.
+          {t("description")}
         </p>
       </div>
       <Tabs tabs={tabs} />

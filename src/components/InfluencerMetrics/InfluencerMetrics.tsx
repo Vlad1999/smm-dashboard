@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/components/input/Input';
 import SelectInput, { Option } from '@/components/selectInput/SelectInput';
 import useCurrencyConversion from '@/hooks/useCurrencyConversion';
@@ -30,13 +31,15 @@ const InfluencerMetrics: React.FC = () => {
     setConvertedRoi(convert(roi, currency.value));
   }, [currency, cost, revenue, followers, engagementRate, totalEngagements]);
 
+  const t = useTranslations('Calculator');
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.heading}>🤝 Influencer & Partnership Metrics</h2>
+        <h2 className={styles.heading}>{t('ipm')}</h2>
         <SelectInput
           options={currencies.map((item) => ({ label: item, value: item }))}
-          placeholder="Select currency"
+          placeholder={t('currency')}
           value={currency}
           onChange={setCurrency}
         />
@@ -44,22 +47,22 @@ const InfluencerMetrics: React.FC = () => {
 
       <div className={styles.grid}>
         <Input
-          label="Influencer Followers"
+          label={t('InfluencerFollowers')}
           value={followers.toString()}
           onChange={(value) => setFollowers(Number(value))}
         />
         <Input
-          label="Engagement Rate (%)"
+          label={t('Engagementrate')}
           value={engagementRate.toString()}
           onChange={(value) => setEngagementRate(Number(value))}
         />
         <Input
-          label="Total Engagements"
+          label={t('TotalEngagements')}
           value={totalEngagements.toString()}
           onChange={(value) => setTotalEngagements(Number(value))}
         />
         <Input
-          label={`Partnership Cost (${currency.value})`}
+          label={t('partnership-cost', { currency: currency.value })}
           value={convertedCost.toString()}
           onChange={(value) => {
             const newCost = Number(value);
@@ -68,7 +71,7 @@ const InfluencerMetrics: React.FC = () => {
           }}
         />
         <Input
-          label={`Revenue Generated (${currency.value})`}
+          label={t('revenue-generated', { currency: currency.value })}
           value={convertedRevenue.toString()}
           onChange={(value) => {
             const newRevenue = Number(value);
@@ -80,13 +83,13 @@ const InfluencerMetrics: React.FC = () => {
 
       <div className={styles.results}>
         <p className={styles.resultItem}>
-          <strong>Estimated Reach Value:</strong> {estimatedReach.toFixed(0)} users
+          <strong>{t('EstReachValue')}</strong> {estimatedReach.toFixed(0)} users
         </p>
         <p className={styles.resultItem}>
-          <strong>Cost Per Engagement (CPE):</strong> {currency.value} {convertedCpe.toFixed(2)}
+          <strong>{t('cpe')}</strong> {currency.value} {convertedCpe.toFixed(2)}
         </p>
         <p className={styles.resultItem}>
-          <strong>Partnership ROI:</strong> {convertedRoi.toFixed(2)}%
+          <strong>{t('partROI')}</strong> {convertedRoi.toFixed(2)}%
         </p>
       </div>
     </div>
