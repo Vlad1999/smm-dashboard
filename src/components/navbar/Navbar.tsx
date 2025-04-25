@@ -32,9 +32,10 @@ const LOCALE_OPTIONS = [
 
 interface NavbarProps {
   user: any;
+  isOpen: boolean;
 }
 
-const Navbar = ({ user }: NavbarProps) => {
+const Navbar = ({ user, isOpen }: NavbarProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -92,10 +93,7 @@ const Navbar = ({ user }: NavbarProps) => {
   };
 
   return (
-    <header className={styles.navbar}>
-      {/*<div className={styles['navbar-left']}>*/}
-      {/*  <p>{pathname.replace('/', '')}</p>*/}
-      {/*</div>*/}
+    <header className={`${styles.navbar} ${!isOpen ? styles.collapsed : ''}`}>
       <SelectInput
         options={LOCALE_OPTIONS}
         value={selectedLocale}

@@ -1,5 +1,6 @@
 'use client';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useState } from 'react';
 import Navbar from '@/components/navbar/Navbar';
 import Sidebar from '@/components/sidebar/Sidebar';
 import withAuth from '@/lib/withAuth';
@@ -12,12 +13,13 @@ function AuthLayout({
   children: React.ReactNode;
 }>) {
   const [user] = useAuthState(auth);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className={styles.layout}>
-      <Sidebar />
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={styles['main-content']}>
-        <Navbar user={user} />
+        <Navbar isOpen={isOpen} user={user} />
         <main>{children}</main>
       </div>
     </div>

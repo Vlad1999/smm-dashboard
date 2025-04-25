@@ -1,7 +1,8 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 12px;
   padding: 10px 20px;
   background-color: #ffffff;
   color: #384d6c;
@@ -12,6 +13,11 @@
   position: fixed;
 }
 
+.collapsed {
+  left: 60px;
+  width: calc(100vw - 60px) !important;
+}
+
 .navbar-left {
   font-size: 14px;
 }
@@ -20,7 +26,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: auto;
 }
 
 .avatar {

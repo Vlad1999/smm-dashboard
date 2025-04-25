@@ -65,7 +65,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             disabled={disabled}
             placeholder={placeholder}
-            readOnly={type !== 'text'}
             ref={ref}
             required={required}
             style={{ padding }}

@@ -5,6 +5,8 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Link, useRouter } from '@/i18n/navigation';
 import { auth } from '@/firebase/config';
+import Input from '@/components/input/Input';
+import Button from '@/components/button/Button';
 import styles from './page.module.css';
 
 const Login: React.FC = () => {
@@ -48,35 +50,24 @@ const Login: React.FC = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>Login</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label className={styles.label} htmlFor="email">
-              Email
-            </label>
-            <input
-              className={styles.input}
-              id="email"
-              type="email"
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.label} htmlFor="password">
-              Password
-            </label>
-            <input
-              className={styles.input}
-              id="password"
-              type="password"
-              value={password}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button className={styles.button} type="submit">
-            Login
-          </button>
+          <Input
+            label="Email"
+            type="email"
+            value={email}
+            required
+            onChange={(value) => setEmail(value)}
+          />
+          <Input
+            label="Password"
+            type="password"
+            value={password}
+            required
+            onChange={(value) => setPassword(value)}
+          />
+          {/*<button className={styles.button} type="submit">*/}
+          {/*  Login*/}
+          {/*</button>*/}
+          <Button text="Login" type="submit" variant="primary" />
           <p className={styles.linkContainer}>
             Don&apos;t have an account?{' '}
             <Link className={styles.link} href="/sign-up">
