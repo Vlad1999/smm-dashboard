@@ -14,8 +14,8 @@
 }
 
 .collapsed {
-  left: 60px;
-  width: calc(100vw - 60px) !important;
+  left: 65px;
+  width: calc(100vw - 65px) !important;
 }
 
 .navbar-left {

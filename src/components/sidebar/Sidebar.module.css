@@ -7,18 +7,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-right: 1px solid #e5e5e5;
 }
 
 .collapsed {
-  width: 60px;
+  width: 65px;
 }
 
 .toggle {
   position: absolute;
-  top: 70px;
-  right: -17px;
-  width: 17px;
+  top: 88px;
+  right: -20px;
+  width: 20px;
   height: 40px;
   background: #fff;
   color: #384D6C;
@@ -29,15 +29,18 @@
   cursor: pointer;
   font-family: Nunito;
   font-weight: bold;
+  border-right: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+
 }
 
 .logo {
   color: #131417;
   font-family: Nunito;
-  padding: 10px 20px;
   display: flex;
-  justify-content: center;
   position: relative;
+  height: 66px;
 }
 
 .sidebar ul {
