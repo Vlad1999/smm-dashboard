@@ -18,7 +18,7 @@ function CalendarPage() {
   const [newEventDate, setNewEventDate] = useState<Date | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [selectedEvent, setSelectedEvent] = useState<EventInput>(null);
+  const [selectedEvent, setSelectedEvent] = useState<EventInput>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [user] = useAuthState(auth);
