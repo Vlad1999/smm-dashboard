@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Link, useRouter } from '@/i18n/navigation';
@@ -16,15 +16,28 @@ const Sidebar: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
 
   return (
     <nav className={`${styles.sidebar} ${!isOpen ? styles.collapsed : ''}`}>
-      <div className={styles.logo}>
+      <div
+        className={styles.logo}
+        style={{
+          padding: '15px',
+        }}
+      >
         <Image
           alt="Logo"
-          height={isOpen ? 46 : 36}
+          height={isOpen ? 46 : 38}
           src={isOpen ? '/logo.png' : '/logo-mini.png'}
-          width={isOpen ? 120 : 40}
+          width={isOpen ? 120 : 36}
         />
         <div className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? '<' : '>'}
+          <Image
+            alt="Right icon"
+            height={12}
+            src="/icons/arrow.svg"
+            style={{
+              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+            width={14}
+          />
         </div>
       </div>
       <ul>

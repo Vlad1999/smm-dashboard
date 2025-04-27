@@ -18,7 +18,7 @@ function AuthLayout({
   return (
     <div className={styles.layout}>
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className={styles['main-content']}>
+      <div className={styles['main-content']} style={{ marginLeft: isOpen ? '200px' : '60px' }}>
         <Navbar isOpen={isOpen} user={user} />
         <main>{children}</main>
       </div>

@@ -89,7 +89,7 @@ function DashboardPage() {
   const t = useTranslations('Dashboard');
 
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <div className={styles['inner-container']}>
         {stats && <InsightBox data={stats} />}
         {stats && <FollowerGrowthChart chartData={stats} />}
@@ -103,7 +103,7 @@ function DashboardPage() {
         )}
       </div>
       {stats && <ActivitiesBlock activities={groupActivitiesByAction(stats)} />}
-    </main>
+    </div>
   );
 }
 
