@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/components/input/Input';
 import styles from './EngagementMetrics.module.css';
-import { useTranslations } from 'next-intl';
 
 const EngagementMetrics: React.FC = () => {
   const [likes, setLikes] = useState(0);
@@ -26,42 +26,42 @@ const EngagementMetrics: React.FC = () => {
       <h2 className={styles.heading}>{t('epmetrics')}</h2>
       <div className={styles.inputsGrid}>
         <Input
-          label={t("likes")}
+          label={t('likes')}
           value={likes.toString()}
           onChange={(value) => setLikes(Number(value))}
         />
         <Input
-          label={t("comments")}
+          label={t('comments')}
           value={comments.toString()}
           onChange={(value) => setComments(Number(value))}
         />
         <Input
-          label={t("shares")}
+          label={t('shares')}
           value={shares.toString()}
           onChange={(value) => setShares(Number(value))}
         />
         <Input
-          label={t("followers")}
+          label={t('followers')}
           value={followers.toString()}
           onChange={(value) => setFollowers(Number(value))}
         />
         <Input
-          label={t("reach")}
+          label={t('reach')}
           value={reach.toString()}
           onChange={(value) => setReach(Number(value))}
         />
         <Input
-          label={t("impressions")}
+          label={t('impressions')}
           value={impressions.toString()}
           onChange={(value) => setImpressions(Number(value))}
         />
         <Input
-          label={t("clicks")}
+          label={t('clicks')}
           value={clicks.toString()}
           onChange={(value) => setClicks(Number(value))}
         />
         <Input
-          label={t("conversions")}
+          label={t('conversions')}
           value={conversions.toString()}
           onChange={(value) => setConversions(Number(value))}
         />
@@ -89,4 +89,3 @@ const EngagementMetrics: React.FC = () => {
 };
 
 export default EngagementMetrics;
-

@@ -1,19 +1,15 @@
 'use client';
-
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import withAuth from '@/lib/withAuth';
 import EngagementMetrics from '@/components/EngagementMetrics/EngagementMetrics';
 import Tabs from '@/components/tabs/Tabs';
 import ROICalculators from '@/components/ROICalculators/ROICalculators';
 import CampaignPlanner from '@/components/CampaignPlanner/CampaignPlanner';
 import InfluencerMetrics from '@/components/InfluencerMetrics/InfluencerMetrics';
-import SelectInput from '@/components/selectInput/SelectInput';
 import styles from './page.module.css';
-import { useTranslations } from 'next-intl';
 
 function CalculatorPage() {
-  const [currency, setCurrency] = useState('USD');
-
   const t = useTranslations('Calculator');
 
   const tabs = [
@@ -49,14 +45,11 @@ function CalculatorPage() {
     },
   ];
 
-
   return (
     <main className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>{t("header")}</h2>
-        <p className={styles.description}>
-          {t("description")}
-        </p>
+        <h2 className={styles.title}>{t('header')}</h2>
+        <p className={styles.description}>{t('description')}</p>
       </div>
       <Tabs tabs={tabs} />
     </main>

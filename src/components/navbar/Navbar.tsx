@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState, useTransition } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 import { signOut } from '@firebase/auth';
 import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
@@ -7,11 +6,11 @@ import Avatar from 'react-avatar';
 import { doc, getDoc } from '@firebase/firestore';
 import { useLocale } from 'use-intl';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { auth, db } from '@/firebase/config';
 import useClickOutside from '@/hooks/useClickOutside';
 import SelectInput, { Option } from '@/components/selectInput/SelectInput';
+import { usePathname, useRouter } from '@/i18n/navigation';
 import styles from './Navbar.module.css';
 
 enum LOCALES {
